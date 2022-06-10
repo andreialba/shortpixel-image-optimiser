@@ -1090,23 +1090,24 @@ class MediaLibraryModel extends \ShortPixel\Model\Image\MediaLibraryThumbnailMod
 
 			$fileDelete = (count($duplicates) == 0) ? true : false;
 
-			if ($fileDelete == true)
+			if ($fileDelete === true)
       	parent::onDelete();
 
       foreach($this->thumbnails as $thumbObj)
       {
-        $thumbObj->onDelete($fileDelete);
+				if ($fileDelete === true)
+        	$thumbObj->onDelete($fileDelete);
       }
 
       if ($this->isScaled())
       {
          $originalFile = $this->getOriginalFile();
-         $originalFile->onDelete($fileDelete);
+				 if ($fileDelete === true)
+				 		$originalFile->onDelete($fileDelete);
       }
 
 		 	$this->removeLegacy();
       $this->deleteMeta();
-
 			$this->dropFromQueue();
   }
 
@@ -1932,7 +1933,7 @@ class MediaLibraryModel extends \ShortPixel\Model\Image\MediaLibraryThumbnailMod
 				elseif ( isset($metadata['ShortPixelImprovement']))
 				{
 					 // If the improvement is set, calculate back originalsize.
-					 $imp = intval($metadata['ShortPixelImprovement']); // try to make int. Legacy can contain errors / message / crap here. 
+					 $imp = intval($metadata['ShortPixelImprovement']); // try to make int. Legacy can contain errors / message / crap here.
 	 			   if ($imp > 0)
 	 				  	$this->image_meta->originalSize = ($this->getFileSize() / (100 - $imp)) * 100;
 				}
