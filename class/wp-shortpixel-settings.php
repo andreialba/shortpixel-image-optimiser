@@ -185,8 +185,9 @@ class WPShortPixelSettings extends \ShortPixel\Model {
             update_option('wp-short-pixel-activation-notice', true, 'no');
         }
         update_option( 'wp-short-pixel-activation-date', time(), 'no');
-        delete_option( 'wp-short-pixel-bulk-last-status');
+        delete_option( 'wp-short-pixel-bulk-last-status'); // legacy shizzle
         delete_option( 'wp-short-pixel-current-total-files');
+				delete_option('wp-short-pixel-remove-settings-on-delete-plugin');
         delete_option(self::$_optionsMap['removeSettingsOnDeletePlugin']['key']);
 
         // Dismissed now via Notices Controller.
@@ -207,6 +208,10 @@ class WPShortPixelSettings extends \ShortPixel\Model {
 
     public static function onDeactivate() {
         delete_option('wp-short-pixel-activation-notice');
+				delete_option( 'wp-short-pixel-bulk-last-status'); // legacy shizzle
+				delete_option( 'wp-short-pixel-current-total-files');
+				delete_option('wp-short-pixel-remove-settings-on-delete-plugin');
+
     }
 
 

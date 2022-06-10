@@ -52,4 +52,15 @@ class ApiKeyController extends \ShortPixel\Controller
        return $this->model->is_verified();
     }
 
+		public function uninstall()
+		{
+			 $this->model->uninstall();
+		}
+
+		public static function uninstallPlugin()
+		{
+			 $controller = self::getInstance();
+			 $controller->uninstall();
+		}
+
 }

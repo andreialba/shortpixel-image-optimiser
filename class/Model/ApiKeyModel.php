@@ -177,6 +177,11 @@ class ApiKeyModel extends \ShortPixel\Model
       return $this->apiKey;
   }
 
+	public function uninstall()
+	{
+		 $this->clearApiKey();
+	}
+
   protected function clearApiKey()
   {
     $this->key_is_empty = true;
@@ -184,13 +189,18 @@ class ApiKeyModel extends \ShortPixel\Model
     $this->verifiedKey = false;
     $this->apiKeyTried = '';
     $this->key_is_verified = false;
-    Log::addDebug('Clearing API Key', debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS,10));
 
     AdminNoticesController::resetAPINotices();
     AdminNoticesController::resetQuotaNotices();
     AdminNoticesController::resetIntegrationNotices();
 
-    $this->update();
+		// Remove them all
+		delete_option($this->model['apiKey']['key'], trim($this->apiKey));
+		delete_option($this->model['verifiedKey']['key'], $this->verifiedKey);
+		delete_option($this->model['redirectedSettings']['key'], $this->redirectedSettings);
+		delete_option($this->model['apiKeyTried']['key'], $this->apiKeyTried);
+
+   // $this->update();
 
   }
 

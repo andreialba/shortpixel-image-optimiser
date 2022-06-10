@@ -7,7 +7,7 @@ use ShortPixel\Controller\BulkController as BulkController;
 use ShortPixel\Controller\FileSystemController as FileSystemController;
 use ShortPixel\Controller\AdminNoticesController as AdminNoticesController;
 use ShortPixel\Controller\StatsController as StatsController;
-
+use ShortPixel\Controller\ApiKeyController as ApiKeyController;
 
 class InstallHelper
 {
@@ -64,6 +64,7 @@ class InstallHelper
 
     OptimizeController::uninstallPlugin();
     BulkController::uninstallPlugin();
+		ApiKeyController::uninstallPlugin();
   }
 
  // Removes everything  of SPIO 5.x .  Not recommended.
