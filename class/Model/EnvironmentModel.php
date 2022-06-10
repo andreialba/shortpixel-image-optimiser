@@ -90,9 +90,16 @@ class EnvironmentModel extends \ShortPixel\Model
 				case 'polylang':
 					$plugin = 'polylang/polylang.php';
 				break;
+				case 'spai':
+					$plugin = 'shortpixel-adaptive-images/short-pixel-ai.php';
+				break;
 				default:
 					 $plugin = 'none';
 				break;
+		 }
+
+		 if (!function_exists('is_plugin_active')) {
+    	include_once(ABSPATH . 'wp-admin/includes/plugin.php');
 		 }
 
 		 return \is_plugin_active($plugin);

@@ -133,6 +133,7 @@ namespace ShortPixel;
 		</nav>
 
     <div class='image-preview-section hidden'> <!-- /hidden -->
+			 <div class='title'><?php _e('Just Optimized', 'shortpixel-image-optimiser'); ?></div>
        <div class="image-preview-line">
         <!-- <strong data-result="queuetype"></strong>  -->
 				<span>&nbsp;</span> <!-- Spacer for flex -->

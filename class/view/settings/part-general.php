@@ -213,10 +213,15 @@
               ?>
                 <th scope="row"><?php _e('Resize large images','shortpixel-image-optimiser');?></th>
                 <td>
-										<div class='option'>
 
-                    <input name="resizeImages" type="checkbox" id="resize" value="1" <?php checked( $view->data->resizeImages, true );?>>
-                    <label for="resize"><?php _e('to maximum','shortpixel-image-optimiser');?></label>
+											<div class='switch_button'>
+												<label>
+													<input type="checkbox" class="switch" name="resize" id='resize' value="1" <?php checked($view->data->resizeImages, true);?>>
+													<div class="the_switch">&nbsp; </div>
+													<?php _e('to maximum','shortpixel-image-optimiser') ?>
+												</label>
+											</div>
+
 
 
                     <input type="number" min="1" max="20000" name="resizeWidth" id="width" style="width:80px" class="resize-sizes"
@@ -234,7 +239,6 @@
                     <p class="settings-info">
                         <?php _e('Recommended for large photos, like the ones taken with your phone. Saved space can go up to 80% or more after resizing. Please note that this option does not prevent thumbnails from being created that should  be larger than the selected dimensions, but these thumbnails will also be resized to the dimensions selected here.','shortpixel-image-optimiser');?>
 
-										</div>
 
                     </p>
                     <?php if(false) { ?>
@@ -291,7 +295,7 @@
                         .resize-type-wrap label {
                             display: inline-block;
                             padding: 15px 0 0 0;
-                        } 
+                        }
                     </style>
                     <div class="resize-type-wrap" <?php echo( $view->data->resizeImages ? '' : 'style="display:none;"' );?>>
                         <div class="resize-options-wrap">

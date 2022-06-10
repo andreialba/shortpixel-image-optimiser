@@ -371,8 +371,7 @@
             align-items: center;
             justify-content: center;
             .dashboard-image {
-            //  width: 100%;
-            //  height: 150px;
+
               z-index: 1;
               position: absolute;
               left: 0; right: 0;
@@ -575,6 +574,10 @@
             align-items: center;
             width: 90%;
             margin: auto;
+						> span > {
+							height: 65px;
+							p { margin: 0;}
+						}
             span:first-child {
               margin-right: 20px;
             }
@@ -934,6 +937,20 @@
          border: 1px solid #DFEAFF;
          width: 80%;
          margin: 15px auto;
+				 position: relative;
+
+				 .title {
+					 		position: absolute;
+							top: 0;
+							width: 300px;
+							background: #0f6a7d50;
+							background: linear-gradient(90deg, rgba(15,106,125,1) 0%, rgba(15,106,125,1) 0%, rgba(0,212,255,0) 100%);
+							color: #fff;
+							font-size: 20px;
+							padding: 15px;
+
+
+				 }
         .image-preview-line
         {
            display: flex;
@@ -946,6 +963,7 @@
 					[data-result="filename"]
 					{
 						overflow: hidden;
+						font-weight: 700;
 					}
 
            .opt-circle-image {

@@ -19,12 +19,10 @@ use ShortPixel\ShortpixelLogger\ShortPixelLogger as Log;
     ?>" target="_blank">
         <?php _e('ShortPixel account','shortpixel-image-optimiser');?>
     </a>
+			<div class='pie-wrapper'><?php	$this->loadView('settings/part-optpie'); ?></div>
 		</div>
 
-		<div class='pie-wrapper'>
-			<?php	$this->loadView('settings/part-optpie'); ?>
-		</div>
-
+		
 		<?php if (! is_null($this->quotaData)): ?>
 		<div class='quota-remaining'>
 			<a href="https://shortpixel.com/<?php

@@ -30,7 +30,12 @@ if (! is_null($view->debugInfo) && is_array($view->debugInfo) && count($view->de
   <?php endif; ?>
 
   <?php if (property_exists($this->view, 'text')): ?>
-  <div class='sp-column-info'><p><?php  echo $this->view->text;  ?></p></div>
+  <div class='sp-column-info'>
+		<?php
+			    // burger if needed.
+			    echo '<p>' . $this->view->list_actions . '</p>'; ?>
+		<p><?php  echo $this->view->text;  ?></p></div>
+
 <?php endif; ?>
 
 
@@ -50,9 +55,6 @@ if (! is_null($view->debugInfo) && is_array($view->debugInfo) && count($view->de
 
     endif;
 
-    // burger if needed.
-
-    echo '<p>' . $this->view->list_actions . '</p>';
 
     ?>
 

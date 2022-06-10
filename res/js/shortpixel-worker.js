@@ -80,7 +80,7 @@ var SpWorker = {
           body: params.toString(),
 
       }).catch (function (error){
-					 if (! this.stopped)
+					 if (this && ! this.stopped) // if page is switched during init , this might not be set. 
 					 {
 					 		postMessage({'status' : false, message: error});
 					 		console.error('Worker.js reporting issue on catch', error);

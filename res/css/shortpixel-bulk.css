@@ -457,6 +457,12 @@
   width: 90%;
   margin: auto;
 }
+.shortpixel-bulk-wrapper section.panel.selection .load.wrapper .loading > span > {
+  height: 65px;
+}
+.shortpixel-bulk-wrapper section.panel.selection .load.wrapper .loading > span > p {
+  margin: 0;
+}
 .shortpixel-bulk-wrapper section.panel.selection .load.wrapper .loading span:first-child {
   margin-right: 20px;
 }
@@ -785,6 +791,17 @@
   border: 1px solid #DFEAFF;
   width: 80%;
   margin: 15px auto;
+  position: relative;
+}
+.shortpixel-bulk-wrapper section.panel.process .image-preview-section .title, .shortpixel-bulk-wrapper section.panel.finished .image-preview-section .title {
+  position: absolute;
+  top: 0;
+  width: 300px;
+  background: #0f6a7d50;
+  background: linear-gradient(90deg, #0f6a7d 0%, #0f6a7d 0%, rgba(0, 212, 255, 0) 100%);
+  color: #fff;
+  font-size: 20px;
+  padding: 15px;
 }
 .shortpixel-bulk-wrapper section.panel.process .image-preview-section .image-preview-line, .shortpixel-bulk-wrapper section.panel.finished .image-preview-section .image-preview-line {
   display: flex;
@@ -795,6 +812,7 @@
 }
 .shortpixel-bulk-wrapper section.panel.process .image-preview-section .image-preview-line [data-result=filename], .shortpixel-bulk-wrapper section.panel.finished .image-preview-section .image-preview-line [data-result=filename] {
   overflow: hidden;
+  font-weight: 700;
 }
 .shortpixel-bulk-wrapper section.panel.process .image-preview-section .image-preview-line .opt-circle-image, .shortpixel-bulk-wrapper section.panel.finished .image-preview-section .image-preview-line .opt-circle-image {
   width: 55px;

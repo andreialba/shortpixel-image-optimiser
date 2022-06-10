@@ -7,7 +7,7 @@
   padding: 1px 12px;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
   border: 1px solid #c3c4c7;
-  margin: 5px 15px 2px;
+  margin: 15px 0;
   border-left-color: #72aee6;
   position: relative;
 }
@@ -22,7 +22,6 @@
   width: 80px;
 }
 .shortpixel.shortpixel-notice span.content {
-  width: 50%;
   padding: 8px 0;
 }
 .shortpixel.shortpixel-notice .details-wrapper {
@@ -77,6 +76,10 @@
 }
 .shortpixel.shortpixel-notice .content .button-primary {
   background-color: #0f6a7d;
+  border-color: #0f6a7d;
+}
+.shortpixel.shortpixel-notice .content .button-primary:hover {
+  background-color: #1cbecb;
 }
 .shortpixel.shortpixel-notice li.sp-conflict-plugins-list {
   line-height: 28px;
