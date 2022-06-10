@@ -51,6 +51,10 @@
   color: #fff;
   border: 1px solid #1cbecb;
 }
+.shortpixel-bulk-wrapper .button:focus {
+  border-color: #1cbecb;
+  background: #1cbecb;
+}
 .shortpixel-bulk-wrapper .button .dashicons {
   font-size: 26px;
   height: 26px;
@@ -119,6 +123,7 @@
   margin: 0;
   padding: 12px;
   background: #1FB5BF;
+  background: linear-gradient(90deg, #0f6a7d 0%, #0f6a7d 0%, #1cbecb 100%);
   width: 100%;
   font-size: 16px;
   color: #ffffff;
@@ -146,6 +151,10 @@
 .shortpixel-bulk-wrapper .bulk-modal .content .table-wrapper > div > span {
   display: table-cell;
   padding: 4px 8px;
+}
+.shortpixel-bulk-wrapper .bulk-modal .content a {
+  text-decoration: none;
+  margin-left: 8px;
 }
 .shortpixel-bulk-wrapper .screen-wrapper {
   background: #fff;

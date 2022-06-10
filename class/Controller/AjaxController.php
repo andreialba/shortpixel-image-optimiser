@@ -251,6 +251,7 @@ class AjaxController
 
         }
 
+				Log::addTemp('Sending : ', $json);
         $this->send($json);
 
     }
@@ -642,17 +643,24 @@ class AjaxController
 			 foreach($lines as $index => $line)
 			 {
 				  $cells = explode('|', $line);
-					if (isset($cells[2]))
+					if (isset($cells[2]) && $type !== 'custom')
 					{
 						 $id = $cells[2]; // replaces the image id with a link to image.
-						 $cells[2] = admin_url('post.php?post=' . trim($id) . '&action=edit');
+						 $cells[2] = esc_url(admin_url('post.php?post=' . trim($id) . '&action=edit'));
 				//		 unset($cells[3]);
+					}
+					if (isset($cells[3]))
+					{
+						 $error_message = $cells[3];
+						 $cells[4] = UiHelper::getKBSearchLink($error_message);
+						 Log::addTemp('Adding' . UiHelper::getKBSearchLink($error_message));
 					}
 					$lines[$index] = (array) $cells;
 			 }
 			 $lines = array_values(array_filter($lines));
 			 array_unshift($lines, $headers);
 			 $json->$type->title = sprintf(__('Bulk ran on %s', 'shortpixel-image-optimiser'), $date);
+			 Log::addTemp('Lines', $lines);
 			 $json->$type->results = $lines;
 			 return $json;
 

@@ -14,6 +14,8 @@ class UiHelper
 
 	private static $outputMode = 'admin';
 
+	private static $knowledge_url = 'https://shortpixel.com/knowledge-base/search?query='; // the URL of all knowledge.
+
 	public static function setOutputHandler($name)
 	{
 		 	self::$outputMode = $name;
@@ -502,6 +504,11 @@ class UiHelper
 
    return $action;
   }
+
+	public static function getKBSearchLink($subject)
+	{
+			return esc_url(self::$knowledge_url . sanitize_text_field($subject));
+	}
 
 	// @param MediaLibraryModel Object $imageItem
 	// @param String $size  Preferred size

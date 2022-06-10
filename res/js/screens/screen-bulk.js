@@ -968,7 +968,7 @@ console.log("Screen Init Done", initMedia, initCustom);
 	this.OpenLog = function(event)
 	{
 		 event.preventDefault();
-		 console.log('Borks', event);
+
     var data = {screen_action: 'loadLogFile', callback: 'shortpixel.showLogModal'};
 		data['loadFile'] = event.target.getAttribute('data-file');
 		data['type'] = 'log'; // for the answer.
@@ -1070,7 +1070,12 @@ console.log("Screen Init Done", initMedia, initCustom);
 							html += '<span>' + log.results[i][1] + '</span>';
 						else
 							html += '<span><a href="' + log.results[i][2] + '" target="_blank">' + log.results[i][1] + '</a></span>';
-						html += '<span>' + log.results[i][3] + '</span>';
+
+						if (log.results[i][4])
+							var info = '<span><a href="' + log.results[i][4] + '" target="_blank" ><span class="dashicons dashicons-editor-help">&nbsp;</span></span>';
+						else
+							var info = '';
+							html += '<span>' + log.results[i][3] + info + '</span>';
 					}
 
 					html += '</div>';

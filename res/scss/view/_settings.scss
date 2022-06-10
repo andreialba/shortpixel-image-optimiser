@@ -15,6 +15,7 @@
 	.button, button:focus
 	{
 		color: $color-darkest;
+		border-color: $color-darkest;
 	}
 	.button-primary, .button-primary:focus {
 		background-color: $color-darkest;
@@ -24,6 +25,8 @@
 		&:hover
 		{
 			background-color: $color-dark;
+			border-color: $color-darkest;
+
 		}
 	}
 	.submit {

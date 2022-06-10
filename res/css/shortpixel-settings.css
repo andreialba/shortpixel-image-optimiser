@@ -9,6 +9,7 @@
 }
 .settings_page_wp-shortpixel-settings .button, .settings_page_wp-shortpixel-settings button:focus {
   color: #0f6a7d;
+  border-color: #0f6a7d;
 }
 .settings_page_wp-shortpixel-settings .button-primary, .settings_page_wp-shortpixel-settings .button-primary:focus {
   background-color: #0f6a7d;
@@ -17,6 +18,7 @@
 }
 .settings_page_wp-shortpixel-settings .button-primary:hover, .settings_page_wp-shortpixel-settings .button-primary:focus:hover {
   background-color: #1cbecb;
+  border-color: #0f6a7d;
 }
 .settings_page_wp-shortpixel-settings .submit .button {
   min-height: 44px;
