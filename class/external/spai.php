@@ -7,32 +7,29 @@ class Spai
 		public function __construct()
 		{
 			 add_action('plugins_loaded', array($this, 'addHooks'));
+
 		}
 
 		public function addHooks()
 		{
 			  if (\wpSPIO()->env()->plugin_active('spai'))
 				{
-					 // Put this a high prio before any hooks
-					 Log::addTemp('Hooking');
-					 add_action('wp_ajax_shortpixel_image_processing', array($this, 'preventCache'), 2);
-					 add_action('wp_ajax_shortpixel_ajaxRequest', array($this, 'preventCache'), 2);
-				}
-				else {
-					Log::addTemp('Spai not active');
+					 // Prevent SPAI doing its stuff to our JSON returns. 
+					 $hook_upon = array('shortpixel_image_processing', 'shortpixel_ajaxRequest');
+					 if (wp_doing_ajax() &&
+					 		 isset($_REQUEST['action']) &&
+							 in_array($_REQUEST['action'], $hook_upon)			 )
+					 {
+						 	$this->preventCache();
+					 }
 				}
 		}
 
 		public function preventCache()
 		{
-				Log::addTemp('PreventC');
 			  if (! defined('DONOTCDN'))
 				{
-					 Log::addTemp('Defined DONOTCACHE');
 					 define('DONOTCDN', true);
-				}
-				else {
-					Log::addTemp('Isdefined'. DONOTCDN);
 				}
 		}
 }
