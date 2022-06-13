@@ -56,7 +56,6 @@ class AdminNoticesController extends \ShortPixel\Controller
 
       add_action('admin_notices', array($this, 'check_admin_notices'), 5); // run before the plugin admin notices
 
-
     }
 
     public static function getInstance()
@@ -291,16 +290,18 @@ class AdminNoticesController extends \ShortPixel\Controller
 		// Called by MediaLibraryModel
 		public function invokeLegacyNotice()
 		{
-			  	$message = '<p><strong>' .  __('ShortPixel found items in media library with a legacy optimization format', 'shortpixel-image-optimiser') . '</strong></p>';
+			  	$message = '<p><strong>' .  __('ShortPixel found items in media library with a legacy optimization format!', 'shortpixel-image-optimiser') . '</strong></p>';
 
-					$message .= '<p>' . __('ShortPixel automatically converts them when encountered. Please check if your image library is converted properly', 'shortpixel-image-optimiser') . '</p>';
+					$message .= '<p>' . __('Prior to version 5.0, a different format was used to store ShortPixel optimization information. ShortPixel automatically converts media library items when they are opened. %s Please check if your images contain the optimization information after conversion. %s Read more %s', 'shortpixel-image-optimiser') . '</p>';
 
-					$message .=  '<p>' . __('It is recommend to convert all items to the modern format.', 'shortpixekl-image-optimser') . '</p>';
+					$message .=  '<p>' . __('It is recommended to convert all items to the modern format.', 'shortpixekl-image-optimser') . '</p>';
+					$message .= '<p><a href="%s" class="button button-primary">%s</a></p>';
 
-					$link = admin_url('upload.php?page=wp-short-pixel-bulk&panel=bulk-migrate');
-					$action = __('Convert legacy data', 'shortpixel-image-optimiser');
+					$read_link = esc_url('https://shortpixel.com/knowledge-base/article/434-where-exactly-does-shortpixel-store-the-data-on-the-database');
+					$action_link = esc_url(admin_url('upload.php?page=wp-short-pixel-bulk&panel=bulk-migrate'));
+					$action_name = __('Convert legacy data', 'shortpixel-image-optimiser');
 
-          $message .= '<p><a href="' . $link . '" class="button button-primary">' . $action. '</a></p>';
+					$message = sprintf($message, '<br>', '<a href="' . $read_link . '" target="_blank">', '</a>', $action_link, $action_name);
 
 					$notice = Notices::addNormal($message);
 					Notices::makePersistent($notice, self::MSG_CONVERT_LEGACY, YEAR_IN_SECONDS);
