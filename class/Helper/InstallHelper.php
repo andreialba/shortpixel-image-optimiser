@@ -29,6 +29,8 @@ class InstallHelper
       AdminNoticesController::resetAllNotices();
       \WPShortPixelSettings::onActivate();
       OptimizeController::resetQueues();
+
+			error_log('Activate pLuing');
   }
 
   public static function deactivatePlugin()

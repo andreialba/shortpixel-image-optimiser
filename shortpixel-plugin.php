@@ -63,6 +63,8 @@ class ShortPixelPlugin
       return;
     }
 
+		$this->check_plugin_version();
+
     $front = new Controller\FrontController();
     $admin = Controller\AdminController::getInstance();
     $adminNotices = Controller\AdminNoticesController::getInstance(); // Hook in the admin notices.
@@ -82,8 +84,8 @@ class ShortPixelPlugin
   /** Mainline Admin Init. Tasks that can be loaded later should go here */
   public function init()
   {
-      $notices = Notices::getInstance(); // This hooks the ajax listener
 
+      $notices = Notices::getInstance(); // This hooks the ajax listener
 			$quotaController = QuotaController::getInstance();
 			$quotaController->getQuota();
 
@@ -663,15 +665,6 @@ class ShortPixelPlugin
     return $plugin_path;
   }
 
-  // Get the ShortPixel Object.
-  // @todo Transitionary init for the time being, since plugin init functionality is still split between.
-  public function getShortPixel()
-  {
-    echo "<h3> Old ShortPixel Requested. Please fix</h3>";
-    echo "<PRE>"; print_r(debug_backtrace(null, 9)); '</PRE>';
-    exit('This is a bug.');
-  }
-
   /** Returns defined admin page hooks. Internal use - check states via environmentmodel
   * @returns Array
   */
@@ -680,6 +673,17 @@ class ShortPixelPlugin
     return $this->admin_pages;
   }
 
+	protected function check_plugin_version()
+	{
+		  $version = SHORTPIXEL_IMAGE_OPTIMISER_VERSION;
+			$db_version = $this->settings()->currentVersion;
+
+			if ($version !== $db_version)
+			{
+				InstallHelper::activatePlugin();
+			}
+			$this->settings()->currentVersion = $version;
+	}
 
 
 

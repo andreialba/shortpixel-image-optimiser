@@ -1,4 +1,6 @@
 <?php
+use ShortPixel\ShortpixelLogger\ShortPixelLogger as Log;
+
 
 // @todo In time this should be moved to a helper class
 class ShortPixelTools {

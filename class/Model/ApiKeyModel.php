@@ -195,10 +195,10 @@ class ApiKeyModel extends \ShortPixel\Model
     AdminNoticesController::resetIntegrationNotices();
 
 		// Remove them all
-		delete_option($this->model['apiKey']['key'], trim($this->apiKey));
-		delete_option($this->model['verifiedKey']['key'], $this->verifiedKey);
-		delete_option($this->model['redirectedSettings']['key'], $this->redirectedSettings);
-		delete_option($this->model['apiKeyTried']['key'], $this->apiKeyTried);
+		delete_option($this->model['apiKey']['key']);
+		delete_option($this->model['verifiedKey']['key']);
+		delete_option($this->model['redirectedSettings']['key']);
+		delete_option($this->model['apiKeyTried']['key']);
 
    // $this->update();
 
