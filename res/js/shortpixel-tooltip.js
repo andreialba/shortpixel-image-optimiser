@@ -65,6 +65,8 @@ var ShortPixelToolTip = function(reserved, processor)
 
 				var inqueue = stats.in_queue;
 				var inprocess = stats.in_process;
+
+				// @todo This needs fixing. 
 				var pattern = new RegExp("\\.|\\,", '');
 
 				if (typeof inqueue === 'string'  && inqueue)

@@ -201,7 +201,7 @@ console.log("Screen Init Done", initMedia, initCustom);
   this.SwitchPanel = function(targetName)
   {
      console.debug('Switching Panel ' + targetName);
-		 console.trace(targetName);
+
       this.ToggleLoading(false);
       if (! this.panels[targetName])
       {
@@ -295,7 +295,16 @@ console.log("Screen Init Done", initMedia, initCustom);
       }
       if (qStatus == 'QUEUE_EMPTY')
       {
-          if (data.total.stats.total > 0)
+					// @todo Pre-release fix, not clean. Fix.
+					var total = data.total.stats.total;
+					if (typeof total == 'string')
+					{
+						var pattern = new RegExp("\\.|\\,", '');
+						total = total.replace(pattern, '');
+					}
+
+
+          if (total > 0)
           {
             this.SwitchPanel('finished'); // if something actually was done.
             this.processor.StopProcess();
@@ -311,7 +320,6 @@ console.log("Screen Init Done", initMedia, initCustom);
   }
   this.HandleImage = function(resultItem, type)
   {
-      console.log('HandleImage', resultItem, type);
 
       var result = resultItem.result;
       if ( this.processor.fStatus[resultItem.fileStatus] == 'FILE_DONE')
@@ -509,13 +517,6 @@ console.log("Screen Init Done", initMedia, initCustom);
   this.UpdateData = function(dataName, data, type)
   {
       console.log('updating Data :',  dataName, data, type);
-			self.debugCounter++;
-
-			if (self.debugCounter > 20)
-			{
-				console.error('loop detected, pausing');
-				this.PauseBulk();
-			}
 
       if (typeof type == 'undefined')
       {
