@@ -81,6 +81,9 @@
 .shortpixel-bulk-wrapper nav .button-primary {
   margin-left: 15px;
 }
+.shortpixel-bulk-wrapper .kbinfo a {
+  text-decoration: none;
+}
 .shortpixel-bulk-wrapper .hidden {
   display: none !important;
 }

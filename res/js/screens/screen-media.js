@@ -198,15 +198,7 @@ var ShortPixelScreen = function (MainScreen, processor)
 					{
           	this.processor.LoadItemView({id: result.item_id, type: 'media'});
 					}
-					/*if (result.is_done)
-          {
-            e = {};
-            e.detail = {};
-            e.detail.media = {};
-            e.detail.media.id = result.item_id;
-            e.detail.media.result = result.message;
-            this.RenderItemView(e); // remove actions.
-         } */
+
     }
 
     this.RenderItemView = function(e)

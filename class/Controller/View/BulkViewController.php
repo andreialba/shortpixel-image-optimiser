@@ -144,12 +144,17 @@ class BulkViewController extends \ShortPixel\ViewController
 				$item_id = isset($cells[2]) ? $cells[2] : false;
 				$message = isset($cells[3]) ? $cells[3] : false;
 
+				$kblink = UIHelper::getKBSearchLink($message);
+				$kbinfo = '<span class="kbinfo"><a href="' . $kblink . '" target="_blank" ><span class="dashicons dashicons-editor-help">&nbsp;</span></a></span>';
+
+
+
 				$output .= '<div class="fatal">';
 				$output .= $date . ': ';
 				if ($message)
 					$output .= $message;
 				if ($filename)
-					$output .= ' ( '. __('in file ','shortpixel-image-optimiser') . ' ' . $filename . ' ) ';
+					$output .= ' ( '. __('in file ','shortpixel-image-optimiser') . ' ' . $filename . ' ) ' . $kbinfo;
 
 				$output .= '</div>';
 		 }

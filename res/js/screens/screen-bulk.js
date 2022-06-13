@@ -588,6 +588,7 @@ console.log("Screen Init Done", initMedia, initCustom);
 		var fatal = false;
 		var cssClass = '';
 		var message = '';
+		var info = '';
 
 		if (typeof result.result !== 'undefined') // item error
 		{
@@ -601,6 +602,11 @@ console.log("Screen Init Done", initMedia, initCustom);
 			 		{
 				  		message += ' (' + filename + ') ';
 			 		}
+
+					if (item.kblink)
+					{
+						var info = '<span class="kbinfo"><a href="' + result.kblink + '" target="_blank" ><span class="dashicons dashicons-editor-help">&nbsp;</span></a></span>';
+					}
 			 }
 
 			 var error = this.processor.aStatusError[result.error];
@@ -620,7 +626,7 @@ console.log("Screen Init Done", initMedia, initCustom);
 
 		if (fatal)
 			 cssClass += ' fatal';
-		var data = {message: '<div class="'+ cssClass + '">' + message + '</div>'};
+		var data = {message: '<div class="'+ cssClass + '">' + message + info + '</div>'};
 		this.UpdateData('error', data, type);
 
   }
@@ -1072,7 +1078,7 @@ console.log("Screen Init Done", initMedia, initCustom);
 							html += '<span><a href="' + log.results[i][2] + '" target="_blank">' + log.results[i][1] + '</a></span>';
 
 						if (log.results[i][4])
-							var info = '<span><a href="' + log.results[i][4] + '" target="_blank" ><span class="dashicons dashicons-editor-help">&nbsp;</span></span>';
+							var info = '<span class="kbinfo"><a href="' + log.results[i][4] + '" target="_blank" ><span class="dashicons dashicons-editor-help">&nbsp;</span></a></span>';
 						else
 							var info = '';
 							html += '<span>' + log.results[i][3] + info + '</span>';

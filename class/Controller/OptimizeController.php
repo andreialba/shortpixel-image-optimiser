@@ -738,6 +738,9 @@ class OptimizeController
 			// For now here, see how that goes
 			$item->result->message = ResponseController::formatItem($item->item_id);
 
+			if ($item->result->is_error)
+				$item->result->kblink = UIHelper::getKBSearchLink($item->result->message);
+
       return $item;
 
     }
