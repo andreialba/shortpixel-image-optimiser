@@ -160,7 +160,8 @@ console.log("Screen Init Done", initMedia, initCustom);
 				}
 		}
 
-	},
+	}
+
   this.UpdatePanelStatus = function(status, panelName)
   {
      if (typeof panelName !== 'undefined')
@@ -200,6 +201,7 @@ console.log("Screen Init Done", initMedia, initCustom);
   this.SwitchPanel = function(targetName)
   {
      console.debug('Switching Panel ' + targetName);
+		 console.trace(targetName);
       this.ToggleLoading(false);
       if (! this.panels[targetName])
       {
@@ -945,8 +947,10 @@ console.log("Screen Init Done", initMedia, initCustom);
     console.log('Start Migrate All');
     var data = {screen_action: 'startMigrateAll', callback: 'shortpixel.startMigrateAll'}; //
 
-    this.SwitchPanel('selection');
-    this.UpdatePanelStatus('loading', 'selection');
+		this.UpdatePanelStatus('loading', 'selection');
+
+		this.SwitchPanel('selection');
+
   	//this.SwitchPanel('process');
 
     // Prepare should happen after selecting what the optimize.

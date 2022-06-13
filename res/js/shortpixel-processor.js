@@ -389,6 +389,7 @@ window.ShortPixelProcessor =
     HandleResponse: function(response, type)
     {
         // Issue with the tooltip is when doing usual cycle of emptiness, a running icon is annoying to user. Once queries and yielded results, it might be said that the processor 'is running'
+				console.log('Handle Response - Tooltipping');
         this.tooltip.DoingProcess();
 
         if (response.has_error == true)
@@ -426,11 +427,8 @@ window.ShortPixelProcessor =
 								if (! imageHandled)
 								{
                 	imageHandled = this.screen.HandleImage(imageItem, type);
-									console.log('imageHandled', imageHandled)
 								}
-								else {
-									console.log('Not handling image', imageItem);
-								}
+
              }
          }
          if (typeof response.result !== 'undefined' && response.result !== null)

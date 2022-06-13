@@ -818,11 +818,7 @@ class SettingsController extends \ShortPixel\ViewController
 
                 if (strlen($value) > 0)  // omit faulty empty statements.
                   $patterns[] = array('type' => $type, 'value' => $value);
-/*                if(count($parts) == 1) {
-                    $patterns[] = array("type" =>"name", "value" => str_replace('\\\\','\\',trim($pat)));
-                } else {
-                    $patterns[] = array("type" =>trim($parts[0]), "value" => str_replace('\\\\','\\',trim($parts[1])));
-                } */
+
             }
 
         }

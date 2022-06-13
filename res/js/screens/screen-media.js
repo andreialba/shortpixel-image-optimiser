@@ -203,6 +203,7 @@ var ShortPixelScreen = function (MainScreen, processor)
 
     this.RenderItemView = function(e)
     {
+				e.preventDefault();
         var data = e.detail;
         if (data.media)
         {
@@ -211,7 +212,7 @@ var ShortPixelScreen = function (MainScreen, processor)
             var element = document.getElementById('sp-msg-' + id);
             element.outerHTML = data.media.itemView;
         }
-        return true;
+        return false; // callback shouldn't do more, see processor.
     }
 
     this.RestoreItem = function(id)

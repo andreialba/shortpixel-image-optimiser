@@ -80,7 +80,7 @@ var SpWorker = {
           body: params.toString(),
 
       }).catch (function (error){
-					 if (this && ! this.stopped) // if page is switched during init , this might not be set. 
+					 if (this && ! this.stopped) // if page is switched during init , this might not be set.
 					 {
 					 		postMessage({'status' : false, message: error});
 					 		console.error('Worker.js reporting issue on catch', error);
@@ -99,8 +99,11 @@ var SpWorker = {
       }
       else
       {
-					console.error('Worker.js reporting issue');
-          postMessage({'status' : false, message: response.status + ' ' + response.statusText});
+					if (this && ! this.stopped)
+					{
+						console.error('Worker.js reporting issue');
+          	postMessage({'status' : false, message: response.status + ' ' + response.statusText});
+					}
       }
    },
    SetEnv: function (data)
