@@ -401,13 +401,18 @@ class StatsModel
        {
           return 0;
        }
-       $foldersids = implode(',', $otherMediaController->getActiveDirectoryIDS() );
 
-			 if (count($foldersids) == 0)
+			 $activeDirectories = $otherMediaController->getActiveDirectoryIDS();
+      // $foldersids = implode(',', $activeDirectories );
+
+			 if (count($activeDirectories) == 0)
 			 	  return 0; // no active folders
 
-       $sql = 'SELECT COUNT(id) as count FROM ' . $wpdb->prefix . 'shortpixel_meta WHERE folder_id in (' . $foldersids . ')';
+					$in_str_arr = array_fill( 0, count( $activeDirectories ), '%s' );
+ 				 $in_str = join( ',', $in_str_arr );
 
+       $sql = 'SELECT COUNT(id) as count FROM ' . $wpdb->prefix . 'shortpixel_meta WHERE folder_id in (' . $in_str . ')';
+			 $sql = $wpdb->prepare($sql, $activeDirectories);
 
        if ($args['optimizedOnly'] == true)
        {
