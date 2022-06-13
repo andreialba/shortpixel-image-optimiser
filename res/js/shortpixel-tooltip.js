@@ -67,9 +67,9 @@ var ShortPixelToolTip = function(reserved, processor)
 				var inprocess = stats.in_process;
 				var pattern = new RegExp("\\.|\\,", '');
 
-				if (inqueue)
+				if (typeof inqueue === 'string'  && inqueue)
 						inqueue = inqueue.replace(pattern,''); // remove number formats
-				if (inprocess)
+				if (typeof inprocess === 'string' && inprocess)
 						inprocess = inprocess.replace(pattern,''); // remove number formats
 
 				var number = parseInt(inqueue) + parseInt(inprocess);
