@@ -1299,7 +1299,6 @@ class MediaLibraryModel extends \ShortPixel\Model\Image\MediaLibraryThumbnailMod
 					 $file = $fs->getFile($originalFile->getFileDir() . $originalFile->getFileBase() . '.jpg');
            $originalFile->setMeta('did_png2jpg', true);
 					 $originalFile->setMeta('status', ImageModel::FILE_STATUS_PENDING);
-					 Log::addTemp('IsScaled CONVERTPNG ', $originalFile->image_meta);
 
             if ($file->exists()) // if new exists, remove old
             {
@@ -1309,9 +1308,7 @@ class MediaLibraryModel extends \ShortPixel\Model\Image\MediaLibraryThumbnailMod
                 $originalFile->setFileInfo();
             }
 				}
-				else {
-					Log::addTemp('This is not scaled', $this->getOriginalFile() );
-				}
+
         // Update
       }
 			else  // false didn't work. This can also be for legimate reasons as big jpg, or transparency.

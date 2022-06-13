@@ -403,6 +403,9 @@ class StatsModel
        }
        $foldersids = implode(',', $otherMediaController->getActiveDirectoryIDS() );
 
+			 if (count($foldersids) == 0)
+			 	  return 0; // no active folders
+
        $sql = 'SELECT COUNT(id) as count FROM ' . $wpdb->prefix . 'shortpixel_meta WHERE folder_id in (' . $foldersids . ')';
 
 

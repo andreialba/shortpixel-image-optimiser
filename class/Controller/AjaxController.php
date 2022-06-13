@@ -250,8 +250,6 @@ class AjaxController
            break;
 
         }
-
-				Log::addTemp('Sending : ', $json);
         $this->send($json);
 
     }
@@ -653,14 +651,12 @@ class AjaxController
 					{
 						 $error_message = $cells[3];
 						 $cells[4] = UiHelper::getKBSearchLink($error_message);
-						 Log::addTemp('Adding' . UiHelper::getKBSearchLink($error_message));
 					}
 					$lines[$index] = (array) $cells;
 			 }
 			 $lines = array_values(array_filter($lines));
 			 array_unshift($lines, $headers);
 			 $json->$type->title = sprintf(__('Bulk ran on %s', 'shortpixel-image-optimiser'), $date);
-			 Log::addTemp('Lines', $lines);
 			 $json->$type->results = $lines;
 			 return $json;
 
