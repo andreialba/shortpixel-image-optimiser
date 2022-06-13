@@ -475,7 +475,7 @@ class MediaLibraryModel extends \ShortPixel\Model\Image\MediaLibraryThumbnailMod
       if ($this->isScaled() )
       {
           $original_file = $this->getOriginalFile();
-          $original_file->handleOptimizedFileType($tempFiles);
+          $original_file->handleOptimizedFileType($tempFiles); // @todo Find out why this is before handleOptimized
 					$original_file->setMeta('compressionType', $compressionType);
 
           if (! $original_file->isOptimized())
@@ -1294,10 +1294,12 @@ class MediaLibraryModel extends \ShortPixel\Model\Image\MediaLibraryThumbnailMod
 
 		    if ($this->isScaled())
 		    {
+
 		       $originalFile = $this->getOriginalFile();
 					 $file = $fs->getFile($originalFile->getFileDir() . $originalFile->getFileBase() . '.jpg');
            $originalFile->setMeta('did_png2jpg', true);
 					 $originalFile->setMeta('status', ImageModel::FILE_STATUS_PENDING);
+					 Log::addTemp('IsScaled CONVERTPNG ', $originalFile->image_meta);
 
             if ($file->exists()) // if new exists, remove old
             {
@@ -1306,6 +1308,9 @@ class MediaLibraryModel extends \ShortPixel\Model\Image\MediaLibraryThumbnailMod
                 $originalFile->resetStatus();
                 $originalFile->setFileInfo();
             }
+				}
+				else {
+					Log::addTemp('This is not scaled', $this->getOriginalFile() );
 				}
         // Update
       }
@@ -1542,12 +1547,6 @@ class MediaLibraryModel extends \ShortPixel\Model\Image\MediaLibraryThumbnailMod
     $cleanRestore = true;
 		$wpmeta = wp_get_attachment_metadata($this->get('id'));
 
-/*					if ($this->getMeta('resize') == true)
-					{
-						 $wpmeta['width'] = $this->get('width');
- 						 $wpmeta['height'] = $this->get('height');
-					}
-					*/
 		$did_png2jpg = $this->getMeta('did_png2jpg');
 		$is_resized = $this->getMeta('resize');
 
@@ -1565,7 +1564,10 @@ class MediaLibraryModel extends \ShortPixel\Model\Image\MediaLibraryThumbnailMod
 		if ($did_png2jpg)
 		{
 			 if ($bool)
+			 {
 			 	$bool = $this->restorePNG2JPG();
+				$wpmeta = wp_get_attachment_metadata($this->get('id')); // png2jpg resets WP metadata.
+			 }
 			 else
 			 	 return $bool;
 		}
