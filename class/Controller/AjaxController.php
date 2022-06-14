@@ -237,13 +237,14 @@ class AjaxController
 					 case "toolsRemoveBackup":
 					 		 $json = $this->removeBackup($json, $data);
 					 break;
-					 case 'request_new_api_key':
+					 case 'request_new_api_key': // @todo Dunnoo why empty, should go if not here.
 
 					 break;
 					 case "loadLogFile":
 					  	$data['logFile'] = isset($_POST['loadFile']) ? sanitize_text_field($_POST['loadFile']) : null;
 					 		$json = $this->loadLogFile($json, $data);
 					 break;
+
            default:
               $json->$type->message = __('Ajaxrequest - no action found', 'shorpixel-image-optimiser');
               $json->error = self::NO_ACTION;

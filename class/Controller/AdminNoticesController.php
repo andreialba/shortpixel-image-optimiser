@@ -199,7 +199,7 @@ class AdminNoticesController extends \ShortPixel\Controller
 
         if (\wpSPIO()->env()->has_nextgen && ! $settings->includeNextGen)
         {
-            $url = admin_url('options-general.php?page=wp-shortpixel-settings&part=adv-settings');
+            $url = esc_url(admin_url('options-general.php?page=wp-shortpixel-settings&part=adv-settings'));
             $message = sprintf(__('It seems you are using NextGen Gallery. You can optimize your galleries with ShortPixel, but this is currently not enabled. To enable, %sgo to settings and enable%s it!', 'shortpixel_image_optimiser'), '<a href="' . $url . '">', '</a>');
             $notice = Notices::addNormal($message);
             Notices::makePersistent($notice, self::MSG_INTEGRATION_NGGALLERY, YEAR_IN_SECONDS);
@@ -542,7 +542,7 @@ class AdminNoticesController extends \ShortPixel\Controller
           //ShortPixelVDD($plugin);
           $action = $plugin['action'];
           $link = ( $action == 'Deactivate' )
-              ? wp_nonce_url( admin_url( 'admin-post.php?action=shortpixel_deactivate_plugin&plugin=' . urlencode( $plugin['path'] ) ), 'sp_deactivate_plugin_nonce' )
+              ? wp_nonce_url( admin_url( 'admin-post.php?action=shortpixel_deactivate_conflict_plugin&plugin=' . urlencode( $plugin['path'] ) ), 'sp_deactivate_plugin_nonce' )
               : $plugin['href'];
           $message .= '<li class="sp-conflict-plugins-list"><strong>' . $plugin['name'] . '</strong>';
           $message .= '<a href="' . $link . '" class="button button-primary">' . $action . '</a>';

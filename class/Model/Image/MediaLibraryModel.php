@@ -1878,7 +1878,7 @@ class MediaLibraryModel extends \ShortPixel\Model\Image\MediaLibraryThumbnailMod
       $was_converted = get_post_meta($this->id, '_shortpixel_was_converted', true);
       if ($was_converted == true || is_numeric($was_converted))
       {
-        Log::addDebug('This item was converted, not converting again');
+        Log::addDebug('No SPIO5 metadata, but this item was converted, not converting again');
         return false;
       }
 

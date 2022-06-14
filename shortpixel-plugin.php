@@ -212,7 +212,7 @@ class ShortPixelPlugin
         //  add_action( 'wp_head', array( $this, 'headCSS')); // for the front-end
 
           //deactivate conflicting plugins if found
-          add_action( 'admin_post_shortpixel_deactivate_plugin', array('\ShortPixel\Helper\InstallHelper', 'deactivateConflictingPlugin'));
+          add_action( 'admin_post_shortpixel_deactivate_conflict_plugin', array('\ShortPixel\Helper\InstallHelper', 'deactivateConflictingPlugin'));
 
           //only if the key is not yet valid or the user hasn't bought any credits.
           // @todo This should not be done here.
